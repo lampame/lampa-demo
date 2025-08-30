@@ -251,12 +251,14 @@ function task(call){
             puts.push('./plugins/dlna2.js')
 
             // Видаляємо head__body для плагіна dlna2
-            if (window.plugin_lampac_dlna) {
-                var headBody = document.querySelector('.head__body');
-                if (headBody) {
-                    headBody.remove();
+            Lampa.Listener.follow('app', function (e) {
+                if (e.type == 'ready' && window.plugin_lampac_dlna) {
+                    var headBody = document.querySelector('.head__body');
+                    if (headBody) {
+                        headBody.remove();
+                    }
                 }
-            }
+            });
 
             puts.push('./plugins/modification.js')
 

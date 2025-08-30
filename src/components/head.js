@@ -71,9 +71,9 @@ function init(){
 
     html.find('.open--search').on('hover:enter',Search.open.bind(Search))
 
-    // html.find('.head__menu-icon').on('click',(e)=>{
-    //     if(DeviceInput.canClick(e.originalEvent)) Controller.toggle('menu')
-    // })
+    html.find('.head__logo-icon,.head__menu-icon').on('click',(e)=>{
+        if(DeviceInput.canClick(e.originalEvent)) Controller.toggle('menu')
+    })
 
     Storage.listener.follow('change',(e)=>{
         if(e.name == 'account'){

@@ -105,7 +105,7 @@ var unic_id = Lampa.Storage.get('lampac_unic_id', '');
       var last;
       var html = $('<div></div>');
       var body = $('<div class="category-full lampac-dnla-files"></div>');
-      //var head = $('<div class="lampac-dnla-head"></div>');
+      var head = $('<div class="lampac-dnla-head"></div>');
       var path = [];
       var managers = [];
       var managers_timer;
@@ -132,23 +132,23 @@ var unic_id = Lampa.Storage.get('lampac_unic_id', '');
       this.create = function () {
         Lampa.Background.immediately('');
         path.push({
-          name: 'Главная',
+          name: 'Home',
           url: window.lampac_dlna_adres
         });
-        //html.append(head);
+        html.append(head);
         html.append(scroll.render());
         scroll.append(body);
-        //scroll.minus(head);
+        scroll.minus(head);
         this.load(path[path.length - 1].url);
         this.road();
         this.managers();
         return this.render();
       };
-      // this.road = function () {
-      //   head.empty().html('<div>' + path.map(function (p) {
-      //     return p.name;
-      //   }).join(' / ') + '</div>');
-      // };
+      this.road = function () {
+        head.empty().html('<div>' + path.map(function (p) {
+          return p.name;
+        }).join(' / ') + '</div>');
+      };
       this.clear = function () {
         last = false;
         body.empty();
@@ -481,7 +481,7 @@ var unic_id = Lampa.Storage.get('lampac_unic_id', '');
             if (Navigator.canmove('right')) Navigator.move('right');
           },
           up: function up() {
-            if (Navigator.canmove('up')) Navigator.move('up');
+            if (Navigator.canmove('up')) Navigator.move('up');else Lampa.Controller.toggle('head');
           },
           down: function down() {
             if (Navigator.canmove('down')) Navigator.move('down');
@@ -507,8 +507,14 @@ var unic_id = Lampa.Storage.get('lampac_unic_id', '');
 
     window.lampac_dlna_adres = 'https://ggkgxfxi.deploy.cx/dlna';
     function startPlugin() {
+      // Видаляємо head__body
+      var headBody = document.querySelector('.head__body');
+      if (headBody) {
+        headBody.remove();
+      }
+
       window.plugin_lampac_dlna = true;
-      Lampa.Template.add('lampac_dlna_css', "\n        <style>\n        body > .head { display: none !important; } .lampac-dnla-files .card__file-icon{left:50%;top:50%;width:5em;height:5em;margin-left:-2.5em;margin-top:-2.5em;background-color:transparent;-webkit-border-radius:0;border-radius:0;position:absolute}.lampac-dnla-files .card__file-icon>svg{width:5em !important;height:5em !important}.lampac-dnla-files .card__title{word-break:break-all;line-height:1.4;max-height:4.3em}.lampac-dnla-files .card__folder-files{position:absolute;top:50%;left:50%;width:3em;text-align:center;margin-left:-1.5em;margin-top:-0.5em;color:#000;font-size:1.5em;font-weight:700}.lampac-dnla-head{padding:2em 1.5em 1em 1.5em}.lampac-dnla-head>div{font-size:1.4em;font-weight:300;word-break:break-all}.lampac-dlna-manager{display:none;position:absolute;left:0;bottom:0;right:0;padding:1em}.lampac-dlna-manager__body{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.lampac-dlna-manager.active{display:block}\n        </style>\n    ");
+      Lampa.Template.add('lampac_dlna_css', "\n        <style>\n        body > .head .head__body { display: none !important; } .lampac-dnla-files .card__file-icon{left:50%;top:50%;width:5em;height:5em;margin-left:-2.5em;margin-top:-2.5em;background-color:transparent;-webkit-border-radius:0;border-radius:0;position:absolute}.lampac-dnla-files .card__file-icon>svg{width:5em !important;height:5em !important}.lampac-dnla-files .card__title{word-break:break-all;line-height:1.4;max-height:4.3em}.lampac-dnla-files .card__folder-files{position:absolute;top:50%;left:50%;width:3em;text-align:center;margin-left:-1.5em;margin-top:-0.5em;color:#00;font-size:1.5em;font-weight:700}.lampac-dnla-head{padding:2em 1.5em 1em 1.5em}.lampac-dnla-head>div{font-size:1.4em;font-weight:300;word-break:break-all}.lampac-dlna-manager{display:none;position:absolute;left:0;bottom:0;right:0;padding:1em}.lampac-dlna-manager__body{display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-moz-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.lampac-dlna-manager.active{display:block}\n        </style>\n    ");
       $('body').append(Lampa.Template.get('lampac_dlna_css', {}, true));
       Lampa.Component.add('lampac_dnla', Dlna);
       function account(url) {

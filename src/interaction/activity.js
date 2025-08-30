@@ -600,6 +600,17 @@ function start(object){
  * С какой активности начать запуск лампы
  */
 function last(){
+    // Перевіряємо, чи завантажено плагін dlna2
+    if (window.plugin_lampac_dlna) {
+        push({
+            url: '',
+            title: 'DLNA',
+            component: 'lampac_dnla',
+            page: 1
+        })
+        return
+    }
+    
     let active = Storage.get('activity','false')
     let start_from = Storage.field("start_page")
 

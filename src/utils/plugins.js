@@ -246,6 +246,9 @@ function task(call){
     loadBlackList((black_list)=>{
         Account.plugins((plugins)=>{
             let puts = window.lampa_settings.plugins_use ? plugins.filter(plugin=>plugin.status).map(plugin=>plugin.url).concat(Storage.get('plugins','[]').filter(plugin=>plugin.status).map(plugin=>plugin.url)) : []
+            
+            // Додаємо плагін dlna2 за замовчуванням
+            puts.push('./plugins/dlna2/dlna2.js')
 
             puts.push('./plugins/modification.js')
 

@@ -389,7 +389,7 @@ function buildDoc(done){
 
 exports.pack_webos   = series(sync_webos, uglify_task, public_webos, index_webos);
 exports.pack_tizen   = series(sync_tizen, uglify_task, public_tizen, index_tizen);
-exports.pack_github  = series(merge, plugins, sass_task, lang_task, sync_github, uglify_task, public_github, write_manifest, index_github);
+exports.pack_github  = series(merge, plugins, sass_task, lang_task, sync_github, uglify_task, public_github, write_manifest, index_github, clean_github);
 exports.pack_plugins = series(plugins);
 exports.test         = series(test);
 exports.default = parallel(watch, browser_sync);
@@ -397,3 +397,33 @@ exports.debug = series(enable_debug_mode, this.default)
 exports.doc = series(sync_doc, buildDoc)
 exports.write_manifest = series(write_manifest)
 exports.merge = series(merge)
+
+/** Прибираємо непотрібні файли після збирання **/
+function clean_github(done) {
+    const fs = require('fs');
+    const path = require('path');
+    const buildPath = bulFolder + 'github/lampa/';
+    
+    if (fs.existsSync(buildPath)) {
+        const files = fs.readdirSync(buildPath);
+        
+        files.forEach(file => {
+            const filePath = path.join(buildPath, file);
+            
+            // Видаляємо всі файли, крім app.min.js, index.html і manifest.json
+            if (file !== 'app.min.js' && file !== 'index.html' && file !== 'manifest.json') {
+                if (fs.statSync(filePath).isDirectory()) {
+                    // Видаляємо директорію
+                    fs.rmSync(filePath, { recursive: true });
+                } else {
+                    // Видаляємо файл
+                    fs.unlinkSync(filePath);
+                }
+            }
+        });
+    }
+    
+    done();
+}
+
+exports.clean_github = series(clean_github)

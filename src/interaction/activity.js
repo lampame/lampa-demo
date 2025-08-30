@@ -601,7 +601,7 @@ function start(object){
  */
 function last(){
     // Перевіряємо, чи існує компонент lampac_dnla
-    if (Lampa.Component.exists('lampac_dnla')) {
+    if (window.plugin_lampac_dlna) {
         push({
             url: '',
             title: 'DLNA',

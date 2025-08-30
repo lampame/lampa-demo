@@ -20,3 +20,8 @@ temp/
 package-lock.json
 src/utils/api/okko.js
 .DS_Store
+.clinerules-architect
+.clinerules-ask
+.clinerules-code
+.clinerules-debug
+.clinerules-test

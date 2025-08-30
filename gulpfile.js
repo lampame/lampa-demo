@@ -225,6 +225,28 @@ function index_github(){
     return src(idxFolder + '/github/**/*').pipe(dest(bulFolder+'github/lampa/'));
 }
 
+/** Копіюємо плагіни в build/github/lampa/plugins **/
+function copy_plugins_to_github(done){
+    const fs = require('fs');
+    const path = require('path');
+    
+    const buildPath = bulFolder + 'github/lampa/plugins/';
+    
+    // Створюємо директорію plugins, якщо її немає
+    if (!fs.existsSync(buildPath)) {
+        fs.mkdirSync(buildPath, { recursive: true });
+    }
+    
+    // Копіюємо плагіни з dest/ в build/github/lampa/plugins/
+    fs.readdirSync(dstFolder).filter(function (file) {
+        return fs.statSync(dstFolder+'/'+file).isDirectory();
+    }).forEach(folder => {
+        src([dstFolder+folder+'/'+folder+'.js']).pipe(dest(buildPath));
+    });
+    
+    done();
+}
+
 /** Сверяем файлы **/
 function sync_task(path){
     return src([pubFolder + '**/*'])
@@ -389,7 +411,7 @@ function buildDoc(done){
 
 exports.pack_webos   = series(sync_webos, uglify_task, public_webos, index_webos);
 exports.pack_tizen   = series(sync_tizen, uglify_task, public_tizen, index_tizen);
-exports.pack_github = series(merge, plugins, sass_task, lang_task, sync_github, uglify_task, public_github, write_manifest, index_github);
+exports.pack_github = series(merge, plugins, sass_task, lang_task, sync_github, uglify_task, public_github, write_manifest, index_github, copy_plugins_to_github);
 exports.pack_plugins = series(plugins);
 exports.test         = series(test);
 exports.default = parallel(watch, browser_sync);

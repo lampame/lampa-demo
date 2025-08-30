@@ -105,7 +105,7 @@ var unic_id = Lampa.Storage.get('lampac_unic_id', '');
       var last;
       var html = $('<div></div>');
       var body = $('<div class="category-full lampac-dnla-files"></div>');
-      var head = $('<div class="lampac-dnla-head"></div>');
+      //var head = $('<div class="lampac-dnla-head"></div>');
       var path = [];
       var managers = [];
       var managers_timer;
@@ -135,20 +135,20 @@ var unic_id = Lampa.Storage.get('lampac_unic_id', '');
           name: 'Главная',
           url: window.lampac_dlna_adres
         });
-        html.append(head);
+        //html.append(head);
         html.append(scroll.render());
         scroll.append(body);
-        scroll.minus(head);
+        //scroll.minus(head);
         this.load(path[path.length - 1].url);
         this.road();
         this.managers();
         return this.render();
       };
-      this.road = function () {
-        head.empty().html('<div>' + path.map(function (p) {
-          return p.name;
-        }).join(' / ') + '</div>');
-      };
+      // this.road = function () {
+      //   head.empty().html('<div>' + path.map(function (p) {
+      //     return p.name;
+      //   }).join(' / ') + '</div>');
+      // };
       this.clear = function () {
         last = false;
         body.empty();
@@ -481,7 +481,7 @@ var unic_id = Lampa.Storage.get('lampac_unic_id', '');
             if (Navigator.canmove('right')) Navigator.move('right');
           },
           up: function up() {
-            if (Navigator.canmove('up')) Navigator.move('up');else Lampa.Controller.toggle('head');
+            if (Navigator.canmove('up')) Navigator.move('up');
           },
           down: function down() {
             if (Navigator.canmove('down')) Navigator.move('down');

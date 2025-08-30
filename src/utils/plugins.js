@@ -250,12 +250,16 @@ function task(call){
             // Додаємо плагін dlna2 за замовчуванням
             puts.push('./plugins/dlna2.js')
 
-            // Видаляємо head__body для плагіна dlna2
+            // Видаляємо head__body та menu для плагіна dlna2
             Lampa.Listener.follow('app', function (e) {
                 if (e.type == 'ready' && window.plugin_lampac_dlna) {
                     var headBody = document.querySelector('.head__body');
                     if (headBody) {
                         headBody.remove();
+                    }
+                    var menu = document.querySelector('.menu');
+                    if (menu) {
+                        menu.remove();
                     }
                 }
             });

@@ -7,7 +7,8 @@
     "start": "gulp",
     "debug": "gulp debug",
     "test": "vitest",
-    "doc": "gulp doc"
+    "doc": "gulp doc",
+    "build": "gulp pack_github"
   },
   "author": "unk",
   "license": "ISC",

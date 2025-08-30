@@ -392,69 +392,69 @@ var unic_id = Lampa.Storage.get('lampac_unic_id', '');
 				  });
 			  }
 			  
-              Lampa.Select.show({
-                title: 'Действие',
-                items: menu,
-                onSelect: function onSelect(a) {
-					Lampa.Controller.toggle('content');
+          //     Lampa.Select.show({
+          //       title: 'Действие',
+          //       items: menu,
+          //       onSelect: function onSelect(a) {
+					// Lampa.Controller.toggle('content');
 					
-                    if (a.action == 'stop' || a.action == 'start' || a.action == 'pause') {
-                      network["native"](account(window.lampac_dlna_adres + '/tracker/'+a.action+'?infohash=' + encodeURIComponent(download)), false, false, false, {
-                        dataType: 'text'
-                      });
-                    }
-					else if (a.action == 'change') {
-						var files = manager.files.map(function(fi, i){
-							return {
-								index: i,
-								title: fi.path,
-								checked: fi.priority == 'Normal',
-								checkbox: true
-							}
-						})
-						Lampa.Select.show({
-							title: 'Файлы',
-							items: files,
-							onBack: function(){
-								var select = files.filter(function (s) {
-								  return s.checked;
-								}).map(function (s) {
-								  return 'indexs=' + s.index;
-								}).join('&');
+          //           if (a.action == 'stop' || a.action == 'start' || a.action == 'pause') {
+          //             network["native"](account(window.lampac_dlna_adres + '/tracker/'+a.action+'?infohash=' + encodeURIComponent(download)), false, false, false, {
+          //               dataType: 'text'
+          //             });
+          //           }
+					// else if (a.action == 'change') {
+					// 	var files = manager.files.map(function(fi, i){
+					// 		return {
+					// 			index: i,
+					// 			title: fi.path,
+					// 			checked: fi.priority == 'Normal',
+					// 			checkbox: true
+					// 		}
+					// 	})
+					// 	Lampa.Select.show({
+					// 		title: 'Файлы',
+					// 		items: files,
+					// 		onBack: function(){
+					// 			var select = files.filter(function (s) {
+					// 			  return s.checked;
+					// 			}).map(function (s) {
+					// 			  return 'indexs=' + s.index;
+					// 			}).join('&');
 								
-								network["native"](account(window.lampac_dlna_adres + '/tracker/changefilepriority?infohash=' + encodeURIComponent(download) + '&' + select), false, false, false, {
-									dataType: 'text'
-								});
+					// 			network["native"](account(window.lampac_dlna_adres + '/tracker/changefilepriority?infohash=' + encodeURIComponent(download) + '&' + select), false, false, false, {
+					// 				dataType: 'text'
+					// 			});
 								
-								Lampa.Bell.push({text: 'Успешно'})
+					// 			Lampa.Bell.push({text: 'Успешно'})
 					  
-								Lampa.Controller.toggle('content');
-							}
-						})
-                    } 
-					else if(a.action == 'delete') {
-                      var files = body.find('.card');
-                      last = files.eq(files.index(card) - 1)[0];
-                      card.remove();
-                      network["native"](account(window.lampac_dlna_adres + '/delete?path=' + encodeURIComponent(element.path)), false, false, false, {
-                        dataType: 'text'
-                      });
-                    }
-					else if(a.action == 'view'){
-						Lampa.Activity.push({
-							url: '',
-							component: 'full',
-							id: element.tmdb.id,
-							method: element.tmdb.name ? 'tv' : 'movie',
-							card: element.tmdb,
-							source: 'tmdb'
-						});
-					}
-                },
-                onBack: function onBack() {
-                  Lampa.Controller.toggle('content');
-                }
-              });
+					// 			Lampa.Controller.toggle('content');
+					// 		}
+					// 	})
+          //           } 
+					// else if(a.action == 'delete') {
+          //             var files = body.find('.card');
+          //             last = files.eq(files.index(card) - 1)[0];
+          //             card.remove();
+          //             network["native"](account(window.lampac_dlna_adres + '/delete?path=' + encodeURIComponent(element.path)), false, false, false, {
+          //               dataType: 'text'
+          //             });
+          //           }
+					// else if(a.action == 'view'){
+					// 	Lampa.Activity.push({
+					// 		url: '',
+					// 		component: 'full',
+					// 		id: element.tmdb.id,
+					// 		method: element.tmdb.name ? 'tv' : 'movie',
+					// 		card: element.tmdb,
+					// 		source: 'tmdb'
+					// 	});
+					// }
+          //       },
+          //       onBack: function onBack() {
+          //         Lampa.Controller.toggle('content');
+          //       }
+          //     });
             }
           });
           body.append(card);

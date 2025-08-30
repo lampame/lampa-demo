@@ -271,6 +271,9 @@ function initClass(){
  * Подготовка приложения к запуску
  */
 function prepareApp(){
+    console.log('Set Lang', Storage.get('language'))
+    Storage.set('language', 'en');
+    console.log('Read Lang', Storage.get('language'))
     if(window.prepared_app) return
 
     LoadingProgress.init()
@@ -405,7 +408,6 @@ function startApp(){
     //инициализируем классы
 
     Storage.init()
-    Storage.set('language', 'en');
     HTTPS.init()
     Mirrors.init()
     Personal.init()

@@ -405,6 +405,9 @@ function startApp(){
     //инициализируем классы
 
     Storage.init()
+    if (!window.localStorage.getItem('language')) {
+        Lampa.Storage.set('language', 'en');
+    }
     HTTPS.init()
     Mirrors.init()
     Personal.init()

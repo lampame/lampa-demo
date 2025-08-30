@@ -600,8 +600,8 @@ function start(object){
  * С какой активности начать запуск лампы
  */
 function last(){
-    // Перевіряємо, чи завантажено плагін dlna2
-    if (window.plugin_lampac_dlna) {
+    // Перевіряємо, чи існує компонент lampac_dnla
+    if (Lampa.Component.exists('lampac_dnla')) {
         push({
             url: '',
             title: 'DLNA',

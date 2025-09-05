@@ -186,9 +186,9 @@ var unic_id = Lampa.Storage.get('lampac_unic_id', '');
         var fakeData = [
           {
             type: 'file',
-            name: 'BigBuckBunny',
-            uri: './movie/bbn.mp4',
-            path: 'bbn.mp4',
+            name: 'Sintel',
+            uri: 'https://download.blender.org/demo/movies/Sintel.2010.1080p.mkv',
+            path: 'Sintel.2010.1080p.mkv',
             length: 320 * 180 * 61 // 100 MB
           }
         ];

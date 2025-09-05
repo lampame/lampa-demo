@@ -186,10 +186,10 @@ var unic_id = Lampa.Storage.get('lampac_unic_id', '');
         var fakeData = [
           {
             type: 'file',
-            name: 'Sintel',
-            uri: 'https://download.blender.org/demo/movies/Sintel.2010.1080p.mkv',
-            path: 'Sintel.2010.1080p.mkv',
-            length: 320 * 180 * 61 // 100 MB
+            name: 'bbb_sunflower_native_60fps_normal',
+            uri: 'http://distribution.bbb3d.renderfarming.net/video/mp4/bbb_sunflower_native_60fps_normal.mp4',
+            path: 'bbb_sunflower_native_60fps_normal.mp4',
+            length: 2048 * 1024 * 1024 // 100 MB
           }
         ];
         

@@ -187,7 +187,9 @@ var unic_id = Lampa.Storage.get('lampac_unic_id', '');
           {
             type: 'file',
             name: 'bbb_sunflower_native_60fps_normal',
-            uri: 'http://distribution.bbb3d.renderfarming.net/video/mp4/bbb_sunflower_native_60fps_normal.mp4',
+            uri: 'https://ia800606.us.archive.org/6/items/bbb_sunflower_2160p_60fps_normal/bbb_sunflower_2160p_60fps_normal.ia.mp4',
+			//uri: 'https://lampame.github.io/lampa-demo/movie/bbn.mp4',
+			  //https://lampame.github.io/lampa-demo/movie/bbn.mp4
             path: 'bbb_sunflower_native_60fps_normal.mp4',
             length: 2048 * 1024 * 1024 // 100 MB
           }

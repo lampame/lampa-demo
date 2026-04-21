@@ -737,7 +737,7 @@ function start(data, need, inner){
         else if(Storage.field(player_need) == 'vidhub') window.open('open-vidhub://x-callback-url/open?&url='+encodeURIComponent(data.url))
         else if(Storage.field(player_need) == 'svplayer') window.location.assign('svplayer://x-callback-url/stream?url=' + encodeURIComponent(data.url))
         else if(Storage.field(player_need) == 'tracyplayer') window.location.assign('tracy://open?url=' + encodeURIComponent(data.url))		
-        else if (Storage.field(player_need) == 'tvos') window.location.assign('lampa://video?player=tvos&src=' + encodeURIComponent(data.url) + '&playlist=' + encodeURIComponent(JSON.stringify(data.playlist)))
+        else if (Storage.field(player_need) == 'tvospro' || Storage.field(player_need) == 'tvos') window.location.assign('lampa://video?player=tvospro&src=' + encodeURIComponent(data.url) + '&playlist=' + encodeURIComponent(JSON.stringify(data.playlist)))
         else if (Storage.field(player_need) == 'tvosl') window.location.assign('lampa://video?player=tvosav&src=' + encodeURIComponent(data.url) + '&playlist=' + encodeURIComponent(JSON.stringify(data.playlist)))
         else if (Storage.field(player_need) == 'tvosSelect') window.location.assign('lampa://video?player=lists&src=' + encodeURIComponent(data.url) + '&playlist=' + encodeURIComponent(JSON.stringify(data.playlist)))
             else inner()

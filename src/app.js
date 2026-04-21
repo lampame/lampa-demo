@@ -152,6 +152,7 @@ Arrays.extend(window.lampa_settings,{
     read_only: false,
 
     dcma: false,
+    demo: true,
 
     push_state: true,
 
